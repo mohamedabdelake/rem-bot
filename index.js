@@ -9,7 +9,11 @@ const client = new Client({
   prefix: [".", "/", "!"],
   fromMe: false, 
   owners: [
-    { name: "sonic", jid: "212698078610@s.whatsapp.net" }
+    {
+      name: "sonic",
+      jid: "212698078610@s.whatsapp.net",
+      lid: "212698078610"   // required by meowsab: owner LID / phone digits
+    }
   ],
   settings: { noWelcome: false },
   commandsPath: './plugins'

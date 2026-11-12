@@ -24,3 +24,6 @@ yarn-error.log*
 Thumbs.db
 .vscode/
 .idea/
+
+# WhatsApp session store created on first run
+/sub/

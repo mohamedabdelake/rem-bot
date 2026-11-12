@@ -114,7 +114,8 @@ const client = new Client({
   prefix: [".", "/", "!"],
   fromMe: false,
   owners: [
-    { name: "sonic", jid: "212698078610@s.whatsapp.net" }   // owners = full bot access
+    { name: "sonic", jid: "212698078610@s.whatsapp.net", lid: "212698078610" }
+    // owners = full bot access; lid is required by meowsab (owner LID or phone digits)
   ],
   settings: { noWelcome: false },
   commandsPath: './plugins'
@@ -123,12 +124,11 @@ const client = new Client({
 config.info = {
   nameBot: "rem bot",            // shown in menus and messages
   urls: { api: "https://emam-api.web.id" },
-  copyright: { pack: 'rem bot', author: 'sonic' },  // sticker watermark
-  images: [ /* random menu images */ ]
+  copyright: { pack: 'rem bot', author: 'sonic' }   // sticker watermark
 };
 ```
 
-- **Add an owner:** append `{ name: "...", jid: "<number>@s.whatsapp.net" }` to `owners` (or use `.ضيف_مطور` at runtime).
+- **Add an owner:** append `{ name: "...", jid: "<number>@s.whatsapp.net", lid: "<number>" }` to `owners` — **both `jid` and `lid` are required**, otherwise meowsab throws a `ZodError` on boot.
 - **Bot name:** change `nameBot` — every menu, welcome message and info card follows it.
 - **Message texts** (welcome, alerts, permission errors): `system/control.js`.
 
@@ -136,7 +136,7 @@ config.info = {
 
 ## 📚 Commands
 
-Reply to the menu with a number to browse a category, or use any command directly.
+Open the menu and tap a category button to browse it, or use any command directly.
 
 <details open>
 <summary><b>🏦 Economy & profile</b></summary>
@@ -307,7 +307,7 @@ rem-bot/
 │   ├── utils.js             # sticker builder, uploads, GIF→MP4, AI helper
 │   └── UltraDB.js           # tiny JSON database (users, groups, settings)
 └── plugins/
-    ├── menu.js, menu2.js    # the two menu styles
+    ├── menu.js, menu2.js    # button menu + its alias (.المهام)
     ├── owner.js, id.js      # owner contact card, JID helper
     ├── admins/ ai/ auto/ bank/ download/ example/ game/ gif/
     ├── group/ guild/ info/ logo/ owner/ search/ sticker/ subs/
@@ -344,6 +344,7 @@ Save the file — the plugin loader picks it up automatically.
 | Problem | Fix |
 |---|---|
 | `Cannot find module 'meowsab'` | Run `npm install` inside the project folder |
+| `ZodError: owners[0].lid — expected string` | Add `lid: "<your number>"` next to `jid` in `index.js` `owners` |
 | `sharp` fails to build on Termux | `pkg install python clang make -y` then `npm install` again |
 | GIF → MP4 does nothing | `pkg install ffmpeg -y` |
 | Bot disconnects on phone | `termux-wake-lock`; disable battery optimisation for Termux |
