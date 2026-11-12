@@ -25,10 +25,8 @@ let handler = async (m, { conn, text, command }) => {
       }))
     }]
 
-    return await conn.sendButtonNormal(m.chat, {
-      media: { url: results[0]?.poster },
-      mediaType: 'image',
-      caption: `📌 *نتائج البحث عن:* "${text}"\n\n${results.map((a, i) => `${i+1}. *${a.name}*\n⭐ ${a.rating} | 🎬 ${a.genre} | 📅 ${a.release_date}\n👁️ ${a.views.toLocaleString()}\n${'─'.repeat(20)}`).join('\n')}`,
+    return await conn.sendButton(m.chat, {
+  bodyText: `📌 *نتائج البحث عن:* "${text}"\n\n${results.map((a, i) => `${i+1}. *${a.name}*\n⭐ ${a.rating} | 🎬 ${a.genre} | 📅 ${a.release_date}\n👁️ ${a.views.toLocaleString()}\n${'─'.repeat(20)}`).join('\n')}`,
       buttons: [
         { name: "single_select", params: { 
           title: "🎬 اختر الأنمي",
@@ -54,10 +52,8 @@ let handler = async (m, { conn, text, command }) => {
       }))
     }]
     
-    return await conn.sendButtonNormal(m.chat, {
-      media: { url: data.poster },
-      mediaType: 'image',
-      caption: `🎬 *${data.name}*\n⭐ ${data.rating} | 👁️ ${data.views.toLocaleString()}\n📅 ${data.first_air_date}\n🎭 ${data.genres?.join(", ") || "غير محدد"}\n\n📝 ${data.overview.slice(0, 200)}...`,
+    return await conn.sendButton(m.chat, {
+  bodyText: `🎬 *${data.name}*\n⭐ ${data.rating} | 👁️ ${data.views.toLocaleString()}\n📅 ${data.first_air_date}\n🎭 ${data.genres?.join(", ") || "غير محدد"}\n\n📝 ${data.overview.slice(0, 200)}...`,
       buttons: [
         { name: "single_select", params: { 
           title: "🎬 اختر الحلقة",
@@ -86,10 +82,8 @@ let handler = async (m, { conn, text, command }) => {
       }))
     }]
     
-    return await conn.sendButtonNormal(m.chat, {
-      media: { url: episode.thumbnail },
-      mediaType: 'image',
-      caption: `🎬 *${anime.data.name}*\n📺 *${episode.name}* | 📅 ${episode.air_date || "غير محدد"}\n\n🎀 أختار جودة الفيديو حسب ما تريد:`,
+    return await conn.sendButton(m.chat, {
+  bodyText: `🎬 *${anime.data.name}*\n📺 *${episode.name}* | 📅 ${episode.air_date || "غير محدد"}\n\n🎀 أختار جودة الفيديو حسب ما تريد:`,
       buttons: [
         { name: "single_select", params: { 
           title: "📥 جودة التحميل",
@@ -103,10 +97,8 @@ let handler = async (m, { conn, text, command }) => {
   if (command === "رابط_تحميل") {
     const [url, name, epNum, quality] = text.split("|")
     
-    return await conn.sendButtonNormal(m.chat, {
-  media: { url: 'https://witanime.life/wp-content/uploads/2023/08/cropped-Logo-WITU-192x192.png' },
-  mediaType: 'image', // or image
-  caption: `🎬 *${name}*\n📺 الحلقة ${epNum}\n📥 الجودة: *${quality}*\n\n🔗 رابط التحميل:\n${url}\n\n📌 اضغط لدخول لـ Mediafire`,
+    return await conn.sendButton(m.chat, {
+  bodyText: `🎬 *${name}*\n📺 الحلقة ${epNum}\n📥 الجودة: *${quality}*\n\n🔗 رابط التحميل:\n${url}\n\n📌 اضغط لدخول لـ Mediafire`,
   buttons: [
     
     // 2. URL Button

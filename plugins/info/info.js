@@ -57,26 +57,20 @@ const handler = async (m, { conn, bot, config }) => {
 
 > *_REM BOT SYSTEM_*`;
 
-  await conn.sendMessage(m.chat, {
-    text: msg,
-    contextInfo: context(m.sender, "https://i.pinimg.com/736x/cf/66/94/cf6694258ca9839b43bdaf415c6c56fc.jpg") }, { quoted: reply_status });
+  await conn.sendButton(m.chat, {
+    bodyText: msg,
+    footerText: "rem bot",
+    buttons: [
+      { name: "quick_reply", params: { display_text: "⚡ سـرعـة الـبـوت", id: ".بنج" } },
+      { name: "quick_reply", params: { display_text: "🧠 الـرام", id: ".الرام" } },
+      { name: "quick_reply", params: { display_text: "📋 قـائـمـة الاوامـر", id: ".الاوامر" } }
+    ],
+    mentions: [m.sender],
+    interactiveConfig: { buttons_limits: 10, list_title: "info", button_title: "اضغط هنا", canonical_url: "https://github.com/mohamedabdelake/rem-bot" }
+  }, { quoted: m });
 };
 
 handler.command = ["معلومات", "info", "botinfo", "حالة"];
 handler.category = "info";
 handler.usage = ["معلومات"];
 export default handler;
-
-const context = (jid, img) => ({
-    mentionedJid: [jid],
-    isForwarded: true,
-    forwardingScore: 1,
-    externalAdReply: {
-        title: "𝐏𝐎𝐌𝐍𝐈-𝐀𝐈 🎪 | 𝐁𝐨𝐭 𝐢𝐬 𝐛𝐮𝐢𝐥𝐭 𝐨𝐧 𝐭𝐡𝐞 𝐖𝐒/𝐕𝐈𝐈 𝐟𝐫𝐚𝐦𝐞𝐰𝐨𝐫𝐤",
-        body: "𝚆𝚑𝚊𝚝𝚜𝙰𝚙𝚙 𝚋𝚘𝚝 𝚝𝚑𝚊𝚝 𝚒𝚜 𝚎𝚊𝚜𝚢 𝚝𝚘 𝚖𝚘𝚍𝚒𝚏𝚢 𝚊𝚗𝚍 𝚟𝚎𝚛𝚢 𝚏𝚊𝚜𝚝",
-        thumbnailUrl: img,
-        sourceUrl: '',
-        mediaType: 1,
-        renderLargerThumbnail: true
-    }
-});

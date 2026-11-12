@@ -21,22 +21,7 @@ const handler = async (m, { conn, command, text }) => {
   caption += `╰─┈─┈─┈─⟞🍬⟝─┈─┈─┈─╯\n`;
   caption += `> _*❲ ⏱️ ❳ الرجاء الانتظار قليلاً...*_`;
   
-  await conn.sendMessage(m.chat, { 
-    text: caption,
-    contextInfo: {
-      mentionedJid: [m.sender],
-      isForwarded: true,
-      forwardingScore: 1,
-      externalAdReply: {
-        title: res.title,
-        body: res.channel,
-        thumbnailUrl: res.thumbnail,
-        sourceUrl: '',
-        mediaType: 1,
-        renderLargerThumbnail: true
-      }
-    }
-  });
+  await conn.sendMessage(m.chat, { text: caption, mentions: [m.sender] });
   
   await conn.sendMessage(m.chat, isAudio ? { 
     audio: { url: res.downloadUrl }, 

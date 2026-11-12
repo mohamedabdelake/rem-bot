@@ -18,8 +18,6 @@ if (subBots.list().length >= 30) {
 
     const state = { uid: null, pairDone: false, resolved: false, pending: null };
 
-    const { images: img } = bot.config.info;
-
     const cleanup = () => {
       sub.off('pair', handlers.pair);
       sub.off('ready', handlers.ready);
@@ -40,7 +38,7 @@ if (subBots.list().length >= 30) {
       ready: (id) => {
         if (id !== state.uid || state.resolved) return;
         state.resolved = true;
-        Func.ready(conn, num, m, img[Math.floor(Math.random() * img.length)]);
+        Func.ready(conn, num, m);
         cleanup();
       },
       error: (id, err) => {
@@ -85,7 +83,6 @@ export default run;
 const Func = {
   pair: async (conn, code, num, m, reply_status) => {
     await conn.sendButton(m.chat, {
-      imageUrl: "https://i.pinimg.com/736x/20/c1/cd/20c1cd046c862caa5a42e07d00042357.jpg",
       bodyText: `🔐⤿ نـظـام الـبـوتـات الـفـرعـيـه 𑁍
 ⊱⋅ ──────────── ⋅⊰
 📱 — الرقم: ${num}
@@ -107,20 +104,10 @@ const Func = {
     }, global.reply_status);
   },
 
-  ready: async (conn, num, m, img) => {
+  ready: async (conn, num, m) => {
     await m.react("✅");
     await conn.sendMessage(m.chat, {
-      text: `✅ — *تـم الاتـصـال بـنـجـاح*\n\n📱 الرقم: ${num}\n> *البوت جاهز للاستخدام الآن*`,
-      contextInfo: {
-        externalAdReply: {
-          title: "𝐏𝐎𝐌𝐍𝐈-𝐀𝐈 🎪 | 𝐁𝐨𝐭 𝐢𝐬 𝐛𝐮𝐢𝐥𝐭 𝐨𝐧 𝐭𝐡𝐞 𝐖𝐒/𝐕𝐈𝐈 𝐟𝐫𝐚𝐦𝐞𝐰𝐨𝐫𝐤",
-          body: "𝚆𝚑𝚊𝚝𝚜𝙰𝚙𝚙 𝚋𝚘𝚝 𝚝𝚑𝚊𝚝 𝚒𝚜 𝚎𝚊𝚜𝚢 𝚝𝚘 𝚖𝚘𝚍𝚒𝚏𝚢 𝚊𝚗𝚍 𝚟𝚎𝚛𝚢 𝚏𝚊𝚜𝚝",
-          thumbnailUrl: img,
-          sourceUrl: '',
-          mediaType: 1,
-          renderLargerThumbnail: true
-        }
-      }
+      text: `✅ — *تـم الاتـصـال بـنـجـاح*\n\n📱 الرقم: ${num}\n> *البوت جاهز للاستخدام الآن*`
     });
   },
 

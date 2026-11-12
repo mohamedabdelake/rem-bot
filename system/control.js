@@ -26,16 +26,9 @@ const group = async (ctx, event, eventType) => {
         
         if (global.db.groups[event.chat].noWelcome === true) return 9999;
 
-        const img = ["remove", "add"].includes(eventType) 
-            ? (event.userUrl || "https://files.catbox.moe/hm9iq4.jpg") 
-            : "https://files.catbox.moe/hm9iq4.jpg";
-
-        await ctx.sock.msgUrl(event.chat, txt, {
-            img,
-            title: ctx.config?.info.nameBot || "WhatsApp Bot",
-            body: "𝐴 𝑠𝑖𝑚𝑝𝑙𝑒 𝑊𝒉𝑎𝑡𝑠𝐴𝑝𝑝 𝑏𝑜𝑡 𝑓𝑜𝑟 𝑏𝑒𝑔𝑖𝑛𝑛𝑒𝑟𝑠, 𝑏𝑦 𝑠𝑜𝑛𝑖𝑐",
-            mentions: author ? [author, ...participants] : participants,
-            big: ["remove", "add"].includes(eventType)
+        await ctx.sock.sendMessage(event.chat, {
+            text: txt,
+            mentions: author ? [author, ...participants] : participants
         });
 
     } catch (e) {
@@ -75,12 +68,7 @@ const access = async (msg, checkType, time) => {
     };
     
     if (conn && messages[checkType]) {
-        await conn.msgUrl(msg.chat, messages[checkType], {
-            img: "https://i.pinimg.com/originals/02/c3/51/02c351dfd4eb72a62f225ce964dc510d.jpg",
-            title: "𝐀𝐥𝐞𝐫𝐭𝐬 | 𝐖𝐚𝐫𝐧𝐢𝐧𝐠𝐬",
-            body: "𝐵𝑜𝑡 𝑎𝑙𝑒𝑟𝑡𝑠: 𝑅𝑒𝑎𝑑 𝑡𝒉𝑒 𝑚𝑒𝑠𝑠𝑎𝑔𝑒 𝑡𝑜 𝑙𝑒𝑎𝑟𝑛 𝑚𝑜𝑟𝑒",
-            big: false
-        }, quoted);
+        await conn.sendMessage(msg.chat, { text: messages[checkType] }, quoted);
         return false;  
     }
     return null;  

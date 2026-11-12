@@ -4,7 +4,6 @@ const handler = async (m, { conn, text, bot }) => {
   if (!text) return m.reply("🏴‍☠️ ~ حط نص جنب الأمر ~ 🎩");
 
   const loadingMsg = await conn.sendMessage(m.chat, {
-    contextInfo: context(m.sender, "https://qu.ax/x/9hChk.jpg"),
     text: "```⏳ شـويـة و أجـيـب الـرد يـا قـبـطـن,...```"
   }, { quoted: m});
 
@@ -21,7 +20,6 @@ ${text}
   await conn.sendMessage(m.chat, {
     text: res.answer,
     edit: loadingMsg.key,
-    contextInfo: context(m.sender, "https://qu.ax/x/9hChk.jpg")
   });
 };
 
@@ -30,17 +28,3 @@ handler.category = "ai";
 handler.command = ["لوفي", "luffy"];
 
 export default handler;
-
-const context = (jid, img) => ({
-    mentionedJid: [jid],
-    isForwarded: true,
-    forwardingScore: 1,
-    externalAdReply: {
-        title: "𝐎𝐍𝐄 𝐏𝐈𝐄𝐂𝐄 🏴‍☠️ | 𝐊𝐢𝐧𝐠 𝐨𝐟 𝐭𝐡𝐞 𝐏𝐢𝐫𝐚𝐭𝐞𝐬",
-        body: "𝙼𝚎𝚊𝚝 ~ ☆ 𝙰𝚍𝚟𝚎𝚗𝚝𝚞𝚛𝚎 (⁠｡⁠✧⁠ω⁠✧⁠｡⁠)",
-        thumbnailUrl: img,
-        sourceUrl: '',
-        mediaType: 1,
-        renderLargerThumbnail: true
-    }
-});

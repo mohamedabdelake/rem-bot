@@ -31,6 +31,8 @@ Downloads, AI personas, games, stickers, moderation and multi-device support —
 | 🔁 **Sub-bots** | Pair extra numbers from inside WhatsApp — each one runs the same plugins |
 | ⚙️ **Hot-reloadable plugins** | Drop a file in `plugins/`, it autoloads — no restart needed |
 | 🪶 **Light footprint** | Small dependency set, fast boot, runs on a phone |
+| 🚫 **Zero media clutter** | No thumbnails, posters or promo videos — replies are text, emoji and buttons |
+| 🆕 **Extra utilities** | Reminders, calculator, clock, quotes, group rules, command search |
 
 ---
 
@@ -90,7 +92,9 @@ npm start
 The default prefixes are `.`, `/` and `!` — all commands below work with any of them.
 
 ```
-.الاوامر        → open the category menu, then reply with the category number
+.الاوامر        → open the button menu, then tap a category to see its commands
+.المهام         → the same menu under an alternate name
+.ابحث ملصق      → find any command by keyword
 .معلومات        → bot + system status
 .بومني نص       → talk to the Pomni AI persona
 .تنصيب 212xxxxx → pair an extra sub-bot
@@ -255,6 +259,29 @@ Each persona has its own tone and prompt — edit them in `plugins/ai/`.
 | `.اذاعة_فرعي` | Broadcast through every sub-bot |
 
 </details>
+
+<details open>
+<summary><b>🆕 New utilities</b></summary>
+
+| Command | What it does |
+|---|---|
+| `.تذكير 10د نص` | Reminder after a duration — ثانية / دقيقة / ساعة / يوم or `s` `m` `h` `d` |
+| `.الغاء_تذكير` | Cancel all of your pending reminders |
+| `.حاسبة 2+3*4` | Safe calculator: `+ - * / % ( ) ^` |
+| `.وقت` | Date, time, timezone and bot uptime |
+| `.اقتباس` / `.نصيحة` | Random quote or tip, with a “another one” button |
+| `.قوانين` | Show group rules · `.قوانين ضع <نص>` (admin) · `.قوانين حذف` |
+| `.ابحث <كلمة>` | Search every command by keyword |
+
+</details>
+
+### 🖼️ Media policy
+
+Bot replies are **text + emoji + buttons only**. Menus, info cards, AI replies, pairing messages and profile cards no longer attach thumbnails, ad previews, posters or promo videos.
+
+Only the media you explicitly ask for is sent: downloads (`.اغنيه`, `.يوتيوب`, `.تيك`, `.انستا`…), sticker conversion (`.ملصق`, `.لصوره`, `.لجيف`), GIF reactions, and the image-based games.
+
+---
 
 ### ⚙️ Owner/admin toggles
 

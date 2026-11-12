@@ -4,17 +4,27 @@ by: sonic (@dev.er)
 
 const example = async (m, { conn }) => {
 
-conn.msgUrl(m.chat,
-  '*🔥 Special Offer*',
-  {
-    img: 'https://example.com/promo.jpg',
-    title: '50% OFF',
-    body: 'Limited time',
-    big: true,
-    mentions: ['201234567890@s.whatsapp.net', '201111111111@s.whatsapp.net'],
-  },
-  m
-)
+await conn.sendButton(m.chat, {
+  bodyText: `🔥 *مـثـال بـدون صـور*
+
+كل رسالة في البوت بقت *نص + ايموجي + ازرار* بس.
+مفيش صور ولا فيديوهات ولا ثامبنيل.
+
+> جرب تضغط الأزرار تحت 👇`,
+  footerText: 'rem bot',
+  buttons: [
+    { name: 'quick_reply', params: { display_text: '📋 نسخ الكود', id: 'quick_copy' } },
+    { name: 'cta_copy', params: { display_text: '📎 نسخ نص', copy_code: 'rem bot' } },
+    { name: 'quick_reply', params: { display_text: '📚 قائمة الأوامر', id: '.الاوامر' } }
+  ],
+  mentions: [m.sender],
+  interactiveConfig: {
+    buttons_limits: 10,
+    list_title: 'rem bot',
+    button_title: 'اضغط هنا',
+    canonical_url: 'https://github.com/mohamedabdelake/rem-bot'
+  }
+}, m)
 
 };
 

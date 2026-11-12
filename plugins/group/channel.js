@@ -27,12 +27,7 @@ const handler = async (m, { conn, text }) => {
     msg += `✔️ التوثيق: ${verify}\n\n`
     msg += `📝 الوصف:\n${desc}`
 
-    const img = meta.preview?.direct_path
-      ? 'https://mmg.whatsapp.net' + meta.preview.direct_path
-      : null
-
     await conn.sendButton(m.chat, {
-      imageUrl: img,
       bodyText: msg,
       footerText: "rem bot",
       buttons: [

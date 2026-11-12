@@ -69,20 +69,8 @@ export default async function before(m, { conn }) {
         
         await conn.sendMessage(m.chat, {
             text: msg,
-            contextInfo: {
-                mentionedJid: [m.sender],
-                isForwarded: true,
-                forwardingScore: 1,
-                externalAdReply: {
-                    title: "𝐏𝐎𝐌𝐍𝐈-𝐀𝐈 🎪 | السيرك الرقمي",
-                    body: "تـرقـيـة فـي الـسـيـرك",
-                    thumbnailUrl: "https://i.pinimg.com/originals/81/89/fd/8189fd909bbae4ba4e8f1d940f500a60.jpg",
-                    sourceUrl: '',
-                    mediaType: 1,
-                    renderLargerThumbnail: true
-                }
-            }
-        }, { quoted: reply_status });
+            contextInfo: { mentionedJid: [m.sender] }
+        }, { quoted: m });
     }
     
     return false;

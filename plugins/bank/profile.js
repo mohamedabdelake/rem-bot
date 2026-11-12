@@ -20,9 +20,6 @@ async function handler(m, { conn, bot }) {
     
     const xpProgress = Math.min(100, Math.floor((xp / nextLevelXp) * 100));
     const status = banned ? '🚫 مـحـظـور' : (premium ? '👑 بـريـمـيـوم' : '🟢 عـادي');
-    
-    const profilePic = await conn.profilePictureUrl(m.sender, 'image').catch(() => 'https://i.pinimg.com/originals/11/26/97/11269786cdb625c60213212aa66273a9.png');
-    
     const msg = `╭─┈─┈─┈─⟞🎪⟝─┈─┈─┈─╮
 ┃ *🎭 بـروفـايـل ${pushName} 🎪*
 ╰─┈─┈─┈─⟞🎭⟝─┈─┈─┈─╯
@@ -45,8 +42,7 @@ async function handler(m, { conn, bot }) {
     
     const cfg = bot.config.info;
     await conn.sendMessage(m.chat, {
-        image: { url: profilePic },
-        caption: msg,
+        text: msg,
         contextInfo: {
             mentionedJid: [m.sender],
             isForwarded: true,

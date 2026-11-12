@@ -2,29 +2,20 @@ let handler = async (m, {
     conn,
     bot
 }) => {
-const context = (jid, img) => ({
-    mentionedJid: [jid],
-    isForwarded: true,
-    forwardingScore: 1,
-    externalAdReply: {
-        title: "𝐏𝐎𝐌𝐍𝐈-𝐀𝐈 🎪 | 𝐁𝐨𝐭 𝐢𝐬 𝐛𝐮𝐢𝐥𝐭 𝐨𝐧 𝐭𝐡𝐞 𝐖𝐒/𝐕𝐈𝐈 𝐟𝐫𝐚𝐦𝐞𝐰𝐨𝐫𝐤",
-        body: "𝚆𝚑𝚊𝚝𝚜𝙰𝚙𝚙 𝚋𝚘𝚝 𝚝𝚑𝚊𝚝 𝚒𝚜 𝚎𝚊𝚜𝚢 𝚝𝚘 𝚖𝚘𝚍𝚒𝚏𝚢 𝚊𝚗𝚍 𝚟𝚎𝚛𝚢 𝚏𝚊𝚜𝚝",
-        thumbnailUrl: img,
-        sourceUrl: '',
-        mediaType: 1,
-        renderLargerThumbnail: true
-    }
-});
-const { images } = bot.config.info;
-const img = images.random()
-await conn.sendMessage(m.chat, { 
-  text: `
+await conn.sendButton(m.chat, {
+  bodyText: `
+🎬 *الـسـكـربـت*
 Video: _*https://youtu.be/hA5aCpvesJE?si=pHAEsbDFTVXe2_sq*_
 
-> *لا تنسي وضع نجمة لـ الريبو 🌟*
-`,
-  contextInfo: context(m.sender, img)
-}, { quoted: reply_status });
+> *لا تنسي وضع نجمة لـ الريبو 🌟*`,
+  footerText: bot?.config?.info?.nameBot || 'rem bot',
+  buttons: [
+    { name: "cta_url", params: { display_text: "🎬 ╎ الـفـيـديـو", url: "https://youtu.be/hA5aCpvesJE?si=pHAEsbDFTVXe2_sq" } },
+    { name: "quick_reply", params: { display_text: "📋 قـائـمـة الاوامـر", id: ".الاوامر" } }
+  ],
+  mentions: [m.sender],
+  interactiveConfig: { buttons_limits: 10, list_title: "script", button_title: "اضغط هنا", canonical_url: "https://github.com/mohamedabdelake/rem-bot" }
+}, { quoted: m });
 }
 handler.usage = ["سكريبت"];
 handler.category = "group";

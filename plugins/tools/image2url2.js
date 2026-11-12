@@ -13,7 +13,6 @@ const handler = async (m, { conn, command }) => {
   const link = await uploadToCatbox(media);
   
   await conn.sendButton(m.chat, {
-    imageUrl: link,
     bodyText: "🗃️ ~ Successful *(catbox.moe)*\n- ```" + link + "```",
     footerText: "rem bot",
     buttons: [

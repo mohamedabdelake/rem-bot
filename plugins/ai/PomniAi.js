@@ -4,7 +4,6 @@ const handler = async (m, { conn, text, bot }) => {
   if (!text) return m.reply("🔴 ~ حط نص جنب الأمر ~ 🎪");
 
   const loadingMsg = await conn.sendMessage(m.chat, {
-    contextInfo: context(m.sender, "https://qu.ax/x/yfxdM.jpg"),
     text: "```⏳ جـاري تـجـهـيـز الـرد يـا صـديـقـي,...```"
   }, { quoted: m});
 
@@ -20,8 +19,7 @@ ${text}
 
   await conn.sendMessage(m.chat, {
     text: res.answer,
-    edit: loadingMsg.key,
-    contextInfo: context(m.sender, "https://qu.ax/x/yfxdM.jpg")
+    edit: loadingMsg.key
   });
 };
 
@@ -30,17 +28,3 @@ handler.category = "ai";
 handler.command = ["بومني", "pomni"];
 
 export default handler;
-
-const context = (jid, img) => ({
-    mentionedJid: [jid],
-    isForwarded: true,
-    forwardingScore: 1,
-    externalAdReply: {
-        title: "𝐓𝐇𝐄 𝐀𝐌𝐀𝐙𝐈𝐍𝐆 𝐃𝐈𝐆𝐈𝐓𝐀𝐋 𝐂𝐈𝐑𝐂𝐔𝐒 🎭",
-        body: "𝚃𝚊𝚔𝚎 𝚊 𝚍𝚎𝚎𝚙 𝚋𝚛𝚎𝚊𝚝𝚑 ~ ☆ 𝙻𝚎𝚝'𝚜 𝚝𝚑𝚒𝚗𝚔 𝚝𝚘𝚐𝚎𝚝𝚑𝚎𝚛",
-        thumbnailUrl: img,
-        sourceUrl: '',
-        mediaType: 1,
-        renderLargerThumbnail: true
-    }
-});

@@ -22,9 +22,6 @@ const handler = async (m, { conn, command, text }) => {
         
         user.name = name;
         user.age = parseInt(age);
-        
-        const profilePic = await conn.profilePictureUrl(m.sender, 'image').catch(() => 'https://i.pinimg.com/originals/11/26/97/11269786cdb625c60213212aa66273a9.png');
-        
         const msg = `╭─┈─┈─┈─⟞📝⟝─┈─┈─┈─╮
 ┃ *✅ تـم الـتـسـجـيـل بـنـجـاح*
 ╰─┈─┈─┈─⟞✨⟝─┈─┈─┈─╯
@@ -38,20 +35,11 @@ const handler = async (m, { conn, command, text }) => {
 ╰─┈─┈─┈─⟞🤡⟝─┈─┈─┈─╯`;
 
         await conn.sendMessage(m.chat, {
-            image: { url: profilePic },
-            caption: msg,
+            text: msg,
             contextInfo: {
                 mentionedJid: [m.sender],
                 isForwarded: true,
                 forwardingScore: 1,
-                externalAdReply: {
-                    title: "𝐏𝐎𝐌𝐍𝐈-𝐀𝐈 🎪 | الـسـيـرك الـرقـمـي",
-                    body: "تـسـجـيـل جـديـد فـي الـسـيـرك",
-                    thumbnailUrl: profilePic,
-                    sourceUrl: '',
-                    mediaType: 1,
-                    renderLargerThumbnail: true
-                }
             }
         }, { quoted: reply_status });
     }
@@ -63,9 +51,6 @@ const handler = async (m, { conn, command, text }) => {
         
         delete user.name;
         delete user.age;
-        
-        const profilePic = await conn.profilePictureUrl(m.sender, 'image').catch(() => 'https://i.pinimg.com/originals/11/26/97/11269786cdb625c60213212aa66273a9.png');
-        
         const msg = `╭─┈─┈─┈─⟞🗑️⟝─┈─┈─┈─╮
 ┃ *✅ تـم حـذف الـتـسـجـيـل*
 ╰─┈─┈─┈─⟞✨⟝─┈─┈─┈─╯
@@ -78,20 +63,11 @@ const handler = async (m, { conn, command, text }) => {
 ╰─┈─┈─┈─⟞🤡⟝─┈─┈─┈─╯`;
 
         await conn.sendMessage(m.chat, {
-            image: { url: profilePic },
-            caption: msg,
+            text: msg,
             contextInfo: {
                 mentionedJid: [m.sender],
                 isForwarded: true,
                 forwardingScore: 1,
-                externalAdReply: {
-                    title: "𝐏𝐎𝐌𝐍𝐈-𝐀𝐈 🎪 | الـسـيـرك الـرقـمـي",
-                    body: "تـم حـذف الـتـسـجـيـل",
-                    thumbnailUrl: profilePic,
-                    sourceUrl: '',
-                    mediaType: 1,
-                    renderLargerThumbnail: true
-                }
             }
         }, { quoted: reply_status });
     }

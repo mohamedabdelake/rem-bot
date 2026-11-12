@@ -26,10 +26,8 @@ const handler = async (m, { conn }) => {
     if (!success) {
         const penalty = Math.floor(stealAmount / 2);
         userSender.xp = Math.max(0, (userSender.xp || 0) - penalty);
-        const pic = await conn.profilePictureUrl(m.sender, 'image').catch(() => 'https://i.pinimg.com/originals/11/26/97/11269786cdb625c60213212aa66273a9.png');
         await conn.sendMessage(m.chat, {
-            image: { url: pic },
-            caption: `╭─┈─┈─⟞🚨⟝─┈─┈─╮
+            text: `╭─┈─┈─⟞🚨⟝─┈─┈─╮
 ┃ ❌ فـشـلـت الـسـرقـة
 ╰─┈─┈─⟞💔⟝─┈─┈─╯
 
@@ -49,10 +47,8 @@ const handler = async (m, { conn }) => {
         const available = userTarget.xp;
         userSender.xp = (userSender.xp || 0) + available;
         userTarget.xp = 0;
-        const pic = await conn.profilePictureUrl(m.sender, 'image').catch(() => 'https://i.pinimg.com/originals/11/26/97/11269786cdb625c60213212aa66273a9.png');
         await conn.sendMessage(m.chat, {
-            image: { url: pic },
-            caption: `╭─┈─┈─⟞💰⟝─┈─┈─╮
+            text: `╭─┈─┈─⟞💰⟝─┈─┈─╮
 ┃ ✅ نـجـحـت الـسـرقـة
 ╰─┈─┈─⟞✨⟝─┈─┈─╯
 
@@ -71,11 +67,8 @@ const handler = async (m, { conn }) => {
     
     userTarget.xp -= stealAmount;
     userSender.xp = (userSender.xp || 0) + stealAmount;
-    
-    const pic = await conn.profilePictureUrl(m.sender, 'image').catch(() => 'https://i.pinimg.com/originals/11/26/97/11269786cdb625c60213212aa66273a9.png');
     await conn.sendMessage(m.chat, {
-        image: { url: pic },
-        caption: `╭─┈─┈─⟞💰⟝─┈─┈─╮
+        text: `╭─┈─┈─⟞💰⟝─┈─┈─╮
 ┃ ✅ نـجـحـت الـسـرقـة
 ╰─┈─┈─⟞✨⟝─┈─┈─╯
 

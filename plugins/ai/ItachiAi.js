@@ -4,7 +4,6 @@ const handler = async (m, { conn, text, bot }) => {
   if (!text) return m.reply("🍥 ~ حط نص جنب الأمر ~ 👁️");
 
   const loadingMsg = await conn.sendMessage(m.chat, {
-    contextInfo: context(m.sender, "https://qu.ax/x/8maEs.jpg"),
     text: "```⏳ اطـمـن، أنـا مـوجـود هـنـا...```"
   }, { quoted: m});
 
@@ -21,7 +20,6 @@ ${text}
   await conn.sendMessage(m.chat, {
     text: res.answer,
     edit: loadingMsg.key,
-    contextInfo: context(m.sender, "https://qu.ax/x/8maEs.jpg")
   });
 };
 
@@ -30,17 +28,3 @@ handler.category = "ai";
 handler.command = ["إيتاتشي", "itachi"];
 
 export default handler;
-
-const context = (jid, img) => ({
-    mentionedJid: [jid],
-    isForwarded: true,
-    forwardingScore: 1,
-    externalAdReply: {
-        title: "𝐍𝐀𝐑𝐔𝐓𝐎 🍥 | 𝐀𝐤𝐚𝐭𝐬𝐮𝐤𝐢 𝐋𝐞𝐠𝐞𝐧𝐝",
-        body: "𝙷𝚖... 𝚒𝚗𝚝𝚎𝚛𝚎𝚜𝚝𝚒𝚗𝚐 ~ ☆ 𝙸'𝚖 𝚗𝚘𝚝 𝚒𝚗𝚝𝚎𝚛𝚎𝚜𝚝𝚎𝚍",
-        thumbnailUrl: img,
-        sourceUrl: '',
-        mediaType: 1,
-        renderLargerThumbnail: true
-    }
-});

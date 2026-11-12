@@ -8,14 +8,7 @@ const handler = async (m, { conn }) => {
   ⊱⋅ ────────────────── ⋅⊰
 `;
 
-  await conn.msgUrl(m.chat, txt, {
-    img: "https://i.pinimg.com/736x/73/56/32/735632c6fa8e665c249abbc8a340b77d.jpg" ,
-    caption: txt,
-    title: "𝐒𝐩𝐞𝐞𝐝 / 𝐓𝐞𝐬𝐭",
-    body: "𝐓𝐞𝐬𝐭𝐢𝐧𝐠 𝐭𝐡𝐞 𝐛𝐨𝐭'𝐬 𝐬𝐩𝐞𝐞𝐝: 𝐈𝐬 𝐢𝐭 𝐟𝐚𝐬𝐭 𝐨𝐫 𝐧𝐨𝐭?",
-    big: false,
-    mentions: [m.sender]
-  }, global.reply_status);
+  await conn.sendMessage(m.chat, { text: txt, mentions: [m.sender] }, { quoted: m });
 };
 
 handler.command = ["الرام", "ram"];

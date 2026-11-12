@@ -6,7 +6,6 @@ const handler = async (m, { conn, text }) => {
     const { title, image, timestamp: time, url } = data[0];
 
     await conn.sendButton(m.chat, {
-        imageUrl: image,
         bodyText: `${title} ╎ ${time}`,
         footerText: "🕸️ 𝐃𝐨𝐰𝐧𝐥𝐨𝐚𝐝 ~ 𝐘𝐨𝐮𝐓𝐮𝐛𝐞 🕸️",
         buttons: [

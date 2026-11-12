@@ -12,22 +12,8 @@ FN:${watermark}
 TEL;type=CELL;waid=${num}:+${num}
 END:VCARD`;
 
-  let img = 'https://i.pinimg.com/originals/e2/21/20/e221203f319df949ee65585a657501a2.jpg';
-  
   await conn.sendMessage(m.chat, {
-    contacts: { displayName: watermark, contacts: [{ vcard }] },
-    contextInfo: {
-      forwardingScore: 2023,
-      externalAdReply: {
-        title: '𝑇𝛨𝛯 𝛩𝑊𝛮𝛯𝑅',
-        body: watermark,
-        sourceUrl: '',
-        thumbnailUrl: img,
-        mediaType: 1,
-        showAdAttribution: true,
-        renderLargerThumbnail: true
-      }
-    }
+    contacts: { displayName: watermark, contacts: [{ vcard }] }
   }, { quoted })
 };
 

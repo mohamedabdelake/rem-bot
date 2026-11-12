@@ -1,7 +1,6 @@
 const example = async (m, { conn }) => {
 
 await conn.sendButton(m.chat, {
-  imageUrl: "https://i.pinimg.com/736x/f3/5d/2e/f35d2ed376e03aa254e7f34b4b94992e.jpg",
   bodyText: "Hello! This is the message text",
   footerText: "Footer text",
   buttons: [

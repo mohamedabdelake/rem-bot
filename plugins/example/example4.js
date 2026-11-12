@@ -1,53 +1,49 @@
 const example = async (m, { conn }) => {
 
 await conn.sendCarousel(m.chat, {
-  headerText: '📸 Image Gallery',
-  globalFooterText: 'Swipe to see more →',
+  headerText: '🎴 كـروت نـصـيـة',
+  globalFooterText: 'اسحب لجانب عشان تشوف الباقي ←',
   cards: [
     {
-      imageUrl: 'https://g.top4top.io/p_3700yob0b1.jpg',
-      bodyText: '*Anime Girl 1*',
-      footerText: '🌸 Cute anime style',
+      bodyText: '*الـكـرت الأول*',
+      footerText: '🌸 نص + ازرار بس',
       buttons: [
         { name: 'quick_reply', params: { display_text: '👍 Like', id: 'like1' } },
-        { name: 'cta_url', params: { display_text: '🔗 Download', url: 'https://example.com/img1' } }
+        { name: 'cta_url', params: { display_text: '🔗 الريبو', url: 'https://github.com/mohamedabdelake/rem-bot' } }
       ]
     },
     {
-      imageUrl: 'https://h.top4top.io/p_37009f24s1.jpg',
-      bodyText: '*Anime Girl 2*',
-      footerText: '✨ Beautiful character',
+      bodyText: '*الـكـرت الـتـانـي*',
+      footerText: '✨ من غير صور نهائي',
       buttons: [
         { name: 'quick_reply', params: { display_text: '❤️ Love', id: 'love2' } },
-        { name: 'cta_copy', params: { display_text: '📋 Copy URL', copy_code: 'https://example.com/img2' } }
-      ]
-    },
-{
-      mediaUrl: 'https://qu.ax/x/6GwxA.mp4',
-      mediaType: 'video',
-      bodyText: 'Intro Video',
-      buttons: [
-        { name: 'cta_url', params: { display_text: 'Details', url: 'https://example.com/details' } }
+        { name: 'cta_copy', params: { display_text: '📋 Copy', copy_code: 'rem bot' } }
       ]
     },
     {
-      imageUrl: 'https://i.top4top.io/p_37000qovy1.jpg',
-      bodyText: '*Anime Girl 3*',
-      footerText: '🎨 Amazing artwork',
+      bodyText: '*الـكـرت الـتـالـت*',
+      footerText: '📚 قائمة أقسام',
       buttons: [
-        { 
-          name: 'single_select', 
-          params: { 
-            title: '📁 More Options',
+        { name: 'quick_reply', params: { display_text: '📚 الأقسام', id: '.الاوامر' } }
+      ]
+    },
+    {
+      bodyText: '*الـكـرت الـرابـع*',
+      footerText: '🎨 قائمة اختيار',
+      buttons: [
+        {
+          name: 'single_select',
+          params: {
+            title: '📁 اختار',
             sections: [{
               title: 'Choose action',
               rows: [
-                { title: 'Save to gallery', id: 'save3' },
-                { title: 'Share with friend', id: 'share3' },
-                { title: 'Report image', id: 'report3' }
+                { title: '📂 التحميل', id: '.الاوامر downloads' },
+                { title: '🎮 الألعاب', id: '.الاوامر games' },
+                { title: '🆕 أخرى', id: '.الاوامر other' }
               ]
             }]
-          } 
+          }
         }
       ]
     }

@@ -1,9 +1,7 @@
 const example = async (m, { conn }) => {
 
-return await conn.sendButtonNormal(m.chat, {
-  media: { url: 'https://qu.ax/x/6GwxA.mp4' },
-  mediaType: 'video', // or image
-  caption: `hi, @${m.sender.split("@")[0]}`,
+return await conn.sendButton(m.chat, {
+  bodyText: `hi, @${m.sender.split("@")[0]}`,
   buttons: [
 // 1. Quick Reply
     { name: "quick_reply", params: { display_text: "👍 Quick Reply", id: "quick1" } },

@@ -47,9 +47,6 @@ const handler = async (m, { conn, command }) => {
     user.time[type] = now;
     user.xp = (user.xp || 0) + reward.xp;
     user.cookies = (user.cookies || 0) + reward.cookies;
-    
-    const profilePic = await conn.profilePictureUrl(m.sender, 'image').catch(() => 'https://i.pinimg.com/originals/11/26/97/11269786cdb625c60213212aa66273a9.png');
-    
     const msg = `╭─┈─┈─┈─⟞${reward.border}⟝─┈─┈─┈─╮
 ┃ *🎁 هـديـة ${reward.name} 🎁*
 ╰─┈─┈─┈─⟞${reward.border}⟝─┈─┈─┈─╯
@@ -64,8 +61,7 @@ const handler = async (m, { conn, command }) => {
 ╰─┈─┈─┈─⟞✨⟝─┈─┈─┈─╯`;
 
     await conn.sendMessage(m.chat, {
-        image: { url: profilePic },
-        caption: msg,
+        text: msg,
         contextInfo: {
             mentionedJid: [m.sender],
             isForwarded: true,
